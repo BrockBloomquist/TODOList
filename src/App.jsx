@@ -3,9 +3,17 @@ import { useState } from "react";
 
 export default function App() {
   const [newItem, setNewItem] = useState("");
+  const [todos, setTodos] = useState([]);
   function handleSubmit(e) {
     e.preventDefault();
+    setTodos((currentTodos) => {
+      return [
+        ...currentTodos,
+        { id: crypto.randomUUID(), title: newItem, completed: false },
+      ];
+    });
   }
+
   return (
     <>
       <form className="new-item-form" onSubmit={handleSubmit}>
@@ -22,12 +30,17 @@ export default function App() {
       </form>
       <h1 className="header">TODO List</h1>
       <ul className="list">
-        <li>
-          <label>
-            <input type="checkbox" />
-            Item 1<button className="btn btn-danger">Delete</button>
-          </label>
-        </li>
+        {todos.map((todo) => {
+          return (
+            <li>
+              <label>
+                <input type="checkbox" checked={todo.completed} />
+                {todo.title}
+                <button className="btn btn-danger">Delete</button>
+              </label>
+            </li>
+          );
+        })}
       </ul>
     </>
   );
