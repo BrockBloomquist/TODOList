@@ -4,8 +4,14 @@ import { useState } from "react";
 export default function App() {
   const [newItem, setNewItem] = useState("");
   const [todos, setTodos] = useState([]);
+  let [userMessage, setUserMessage] = useState("No Todos");
+
   function handleSubmit(e) {
     e.preventDefault();
+    if (newItem === "") {
+      setUserMessage("Empty Todo!");
+      return;
+    }
     setTodos((currentTodos) => {
       return [
         ...currentTodos,
@@ -46,7 +52,7 @@ export default function App() {
       </form>
       <h1 className="header">TODO List</h1>
       <ul className="list">
-        {todos.length === 0 && "No Todos"}
+        {todos.length === 0 && userMessage}
         {todos.map((todo) => {
           return (
             <li key={todo.id}>
