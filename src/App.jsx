@@ -12,6 +12,7 @@ export default function App() {
       setUserMessage("Empty Todo!");
       return;
     }
+    setUserMessage("No Todos");
     setTodos((currentTodos) => {
       return [
         ...currentTodos,
