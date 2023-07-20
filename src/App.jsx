@@ -1,17 +1,20 @@
 import "./styles.css";
 import { useState } from "react";
+import { Alert } from "react-bootstrap";
 
 export default function App() {
   const [newItem, setNewItem] = useState("");
   const [todos, setTodos] = useState([]);
-  let [userMessage, setUserMessage] = useState("No Todos");
+  const [userMessage, setUserMessage] = useState("No Todos");
+  const [error, setError] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
     if (newItem === "") {
-      setUserMessage("Empty Todo!");
+      setError(true);
       return;
     }
+    setError(false);
     setUserMessage("No Todos");
     setTodos((currentTodos) => {
       return [
@@ -39,9 +42,20 @@ export default function App() {
 
   return (
     <>
+      <h1
+        style={{
+          position: "relative",
+        }}
+      >
+        Welcome to my TODO List Project!
+      </h1>
+      <h4>Instructions:</h4>
+      <p>Fill in the form below and press add to add a new TODO!</p>
       <form className="new-item-form" onSubmit={handleSubmit}>
         <div className="form-row">
-          <label htmlFor="item">New Item</label>
+          <label htmlFor="item">
+            <h3>Add a new Item</h3>
+          </label>
           <input
             value={newItem}
             onChange={(e) => setNewItem(e.target.value)}
@@ -49,11 +63,14 @@ export default function App() {
             id="item"
           />
           <button className="btn">Add</button>
+          <Alert variant="danger" key="danger">
+            <Alert.Heading>{error && "Empty TODO"}</Alert.Heading>
+          </Alert>
         </div>
       </form>
       <h1 className="header">TODO List</h1>
+      {todos.length === 0 && userMessage}
       <ul className="list">
-        {todos.length === 0 && userMessage}
         {todos.map((todo) => {
           return (
             <li key={todo.id}>
