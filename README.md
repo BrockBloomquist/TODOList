@@ -11,4 +11,4 @@ Once those have been installed you must install the necessary dependencies with 
 To run the project in development mode you must run the command line function
 ## npm run dev
 
-If there are any errors or anything I should implement please let me know.
+If there are any errors or anything I should implement please let me know or create an issue on the repository. 
