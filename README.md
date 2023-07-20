@@ -1,6 +1,6 @@
 # TODOList
 A simple web application that allows the user to create a todo list so that the fundamentals of React could be learned. In addition, by
-understanding the importance of the map function
+understanding the importance of the map function and how it can be utilized to create an object and be displayed in an unordered list. 
 
 In order to run the development version of this project you need to install NodeJS along with the Node Package Manager or npm.
 Once those have been installed you must install the necessary dependencies with these two commands ran on the command in the projects directory.
